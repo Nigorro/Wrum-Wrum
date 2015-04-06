@@ -4,10 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var log = require('./server/libs/log')(module);
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+//
+//Data Base conncection
+//
+mongoose.connect('mongodb://localhost/wrum');
+var db = mongoose.connection;
 
+db.on('error', function (err) {
+    log.error('connection error:', err.message);
+});
+db.once('open', function callback () {
+    log.info("Connected to DB!");
+});
+
+
+
+// var routes = require('./routes/index');
+// var users = require('./routes/users');
+
+var posts = require('./server/api/posts')
 var app = express();
 
 // view engine setup
@@ -20,10 +38,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
-app.use('/', routes);
-app.use('/users', users);
+
+//
+//API Methods
+//
+app.use('/api/', posts);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

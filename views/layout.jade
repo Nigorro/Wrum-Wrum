@@ -1,7 +1,21 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(lang='ru' ng-app='wrum')
+	head
+		title= title
+		link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='./css/style.css')
+	body
+		.main
+			div(ng-view class="fullwidth")
+		script(src='./bower_components/angular/angular.js')
+		script(src='./bower_components/angular-resource/angular-resource.js')
+		script(src='./bower_components/angular-route/angular-route.js')
+		script(src='./bower_components/angular-upload/angular-upload.js')
+		script(src='./js/controllers/controllers.js')
+		script(src='./js/application.js')
+	footer
+		.container
+			.row
+				.col-md-12
+					center
+						p by Nigorro. 2015.
