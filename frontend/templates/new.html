@@ -1,0 +1,10 @@
+<form ng-submit="newPost()">
+  <input type="text" ng-model="params.title" placeholder="Заголовок" />
+  <input type="text" ng-model="params.description" placeholder="Текст" />
+  <input type="text" ng-model="params.image" placeholder="URL фотографии" />
+	<input type="text" ng-model="params.carNumber" placeholder="Номер машины" />
+	<input type="text" ng-model="params.author" placeholder="Автор" />
+  <input class="btn btn-primary" type="submit" id="submit" value="Submit" />
+</form>
+{{inProcess}}<br>
+{{params}}

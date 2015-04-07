@@ -29,6 +29,18 @@ a {
 .post__content {
 	text-align: left;
 	padding-left: 22px;
+	position: relative;
+}
+.post__content h2, .post__content p {
+	margin: 0;
+}
+.post__image img {
+	width: 100%;
+}
+.post__content__date {
+	position: absolute;
+	right: 11px;
+	bottom: 11px;
 }
 .collapse {
 	background: rgb(192, 0, 0);

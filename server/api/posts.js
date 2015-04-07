@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var PostModel = require('../models/postModel').PostModel;
+var log = require('../libs/log')(module);
 var Asshole = require('../models/asshole').Asshole;
 
 
@@ -32,7 +33,7 @@ router.get('/posts/:id', function(req, res, next) {
   });
 });
 
-router.post('/posts', function (req, res) {
+router.post('/posts/new', function (req, res) {
 	var post = new PostModel({
 		title: req.param('title'),
 		author: req.param('author'),

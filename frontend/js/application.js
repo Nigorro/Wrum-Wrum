@@ -14,6 +14,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'templates/about.html',
 			controller: AboutCtrl,
 		})
+		.when('/newpost/', {
+			templateUrl: 'templates/new.html',
+			controller: NewPostCtrl,
+		})
 		.otherwise({
 			redirectTo: '/',
 		})
