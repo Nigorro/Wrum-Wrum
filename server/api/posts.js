@@ -33,11 +33,11 @@ router.get('/posts/:id', function(req, res, next) {
   });
 });
 
-router.post('/posts/new', function (req, res) {
+router.post('/posts', function (req, res) {
 	var post = new PostModel({
-		title: req.param('title'),
 		author: req.param('author'),
 		description: req.param('description'),
+    carNumber: req.param('car_number'),
 		image: req.param('image'),
 	});
 
@@ -56,6 +56,51 @@ router.post('/posts/new', function (req, res) {
       log.error('Internal error(%d): %s',res.statusCode,err.message);
     }
 	});
+});
+
+router.delete('/posts/:id', function(req, res, next) {
+  return PostModel.findById(req.params.id, function (err, post) {
+    if(!post) {
+      res.statusCode = 404;
+      return res.send({ error: 'Not found' });
+    }
+    return post.remove(function (err) {
+      if (!err) {
+        log.info("post removed");
+        return res.send({ status: 'OK'});
+      } else {
+        res.statusCode = 500;
+        log.error('Internal error(%d): %s',res.statusCode,err.message);
+        return res.send({ error: 'Server error' });
+      }
+    });
+  });
+});
+
+router.put('/posts/:id/accept', function (req, res){
+    return PostModel.findById(req.params.id, function (err, post) {
+        if(!post) {
+            res.statusCode = 404;
+            return res.send({ error: 'Not found' });
+        }
+
+        post.isAccepted = true;
+        return post.save(function (err) {
+            if (!err) {
+                log.info("post updated");
+                return res.send({ status: 'OK', post:post });
+            } else {
+                if(err.name == 'ValidationError') {
+                    res.statusCode = 400;
+                    res.send({ error: 'Validation error' });
+                } else {
+                    res.statusCode = 500;
+                    res.send({ error: 'Server error' });
+                }
+                log.error('Internal error(%d): %s',res.statusCode,err.message);
+            }
+        });
+    });
 });
 
 module.exports = router;

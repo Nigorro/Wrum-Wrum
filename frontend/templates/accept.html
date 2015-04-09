@@ -27,14 +27,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12" ng-repeat="post in posts">
-			<div ng-show="post.isAccepted" class="post">
+			<div ng-model='post' ng-click='accept(post._id)' ng-show="!post.isAccepted" class="post">
 				<div class="post__image">
 					<img src="{{post.image}}">
 				</div>
 				<div class="post__content">
-          <p style="text-align:center; font-size:18px; font-weight:700;">{{post.carNumber}}</p>
 					<p><a href="/#/post/{{post._id}}">{{post.description}}</a></p>
-          <p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
+      				<p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
 				</div>
 			</div>
 		</div>

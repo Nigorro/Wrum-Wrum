@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Post = new Schema({
-	title: { type: String, required: true },
-	author: { type: String, required: true },
+	author: { type: String, required: false },
 	description: { type: String, required: true },
-	carNumber: {type: String, required: true},
+	carNumber: {type: String, required: false},
 	image: {type: String, required: true},
 	date: { type: Date, default: Date.now },
+	isAccepted: { type: Boolean, default: false},
 	votes: [],
 	asshole: {},
 });

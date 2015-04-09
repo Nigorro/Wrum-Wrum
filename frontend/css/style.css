@@ -40,11 +40,29 @@ a {
 .post__content__date {
 	position: absolute;
 	right: 11px;
-	bottom: 11px;
+	bottom: 0;
+}
+.has-warning input{
+	border: 1px solid rgb(192, 0, 0);
 }
 .collapse {
 	background: rgb(192, 0, 0);
 }
 .container {
   width: 670px;
+}
+
+.form-horizontal.newPost {
+	background: #fff;
+	padding: 22px;
+	margin: 0 auto;
+	width: 300px;
+}
+.form-horizontal.newPost input{
+	width: 100%;
+	padding: 5px 10px;
+}
+.text_block {
+	background: #fff;
+	padding: 11px 22px;
 }

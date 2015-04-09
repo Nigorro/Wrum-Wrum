@@ -18,6 +18,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'templates/new.html',
 			controller: NewPostCtrl,
 		})
+		.when('/accept/', {
+			templateUrl: 'templates/accept.html',
+			controller: AcceptCtrl,
+		})
 		.otherwise({
 			redirectTo: '/',
 		})
