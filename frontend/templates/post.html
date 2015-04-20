@@ -29,29 +29,16 @@
 		<div class="col-md-12">
 			<div class="post">
 				<div class="post__image">
-					<img id='xid' data-xid="{{ post._id }}" src="{{post.image}}">
+					<img src="{{post.image}}">
 				</div>
 				<div class="post__content">
 					<p style="text-align:center; font-size:18px; font-weight:700;">{{post.car_number}}</p>
           <p>{{post.description}}</p>
           <p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
           <br>
-          <div id="hypercomments_widget" style="margin-left: -11px;"></div>
-            <script type="text/javascript">
-            _hcwp = window._hcwp || [];
-            var _xid = $('#xid').data('xid');
-            _hcwp.push({widget:"Stream", widget_id: 28172, xid: _xid});
-            (function() {
-            if("HC_LOAD_INIT" in window)return;
-            HC_LOAD_INIT = true;
-            var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
-            var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
-            hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/28172/"+lang+"/widget.js";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hcc, s.nextSibling);
-            })();
-            </script>
-            <a href="http://hypercomments.com" class="hc-link" title="comments widget">comments powered by HyperComments</a>
+          <div>
+            <div vkcomments pageid="post._id"></div>
+          </div>
 				</div>
 			</div>
 		</div>

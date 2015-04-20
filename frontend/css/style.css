@@ -28,7 +28,7 @@ a {
 }
 .post__content {
 	text-align: left;
-	padding-left: 22px;
+	padding: 0 22px;
 	position: relative;
 }
 .post__content h2, .post__content p {
