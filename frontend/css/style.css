@@ -52,17 +52,47 @@ a {
   width: 670px;
 }
 
-.form-horizontal.newPost {
+.new-post__container {
 	background: #fff;
 	padding: 22px;
 	margin: 0 auto;
 	width: 300px;
 }
-.form-horizontal.newPost input{
+.new-post__container input{
 	width: 100%;
 	padding: 5px 10px;
 }
 .text_block {
 	background: #fff;
 	padding: 11px 22px;
+}
+
+.upload_file {
+	text-align: center;
+}
+.upload_file .btn {
+	width: 100%;
+}
+.image_preview {
+	width: 100%;
+  margin: 11px -11px;
+}
+.button {
+  -moz-appearance: button;
+  /* Firefox */
+  -webkit-appearance: button;
+  /* Safari and Chrome */
+  padding: 10px;
+  margin: 10px;
+  width: 70px;
+}
+.drop-box {
+  background: rgba(96, 157, 214, 0.14);
+  border: 5px dashed #428BCA;
+  text-align: center;
+  margin: 11px 0;
+  padding: 11px;
+}
+.dragover {
+    border: 5px dashed blue;
 }

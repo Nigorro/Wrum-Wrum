@@ -61,5 +61,4 @@ app.factory('Post', function ($http, $q) {
 	};
 
 	return post;
-
 });

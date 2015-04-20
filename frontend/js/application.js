@@ -1,4 +1,4 @@
-var app = angular.module('wrum', ['ngRoute', 'ngResource'])
+var app = angular.module('wrum', ['ngRoute', 'ngResource', 'angularFileUpload'])
 
 app.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider

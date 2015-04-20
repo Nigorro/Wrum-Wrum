@@ -17,8 +17,40 @@ function PostsCtrl($scope, $http, $routeParams) {
     });
 };
 
-function NewPostCtrl($scope, $http) {
+function NewPostCtrl($scope, $http, $upload) {
 	$scope.inProcess = false;
+	$scope.params = {};
+	//
+
+	$scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
+
+    $scope.upload = function (files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                $upload.upload({
+                    url: '/api/upload',
+                    fields: {
+                        'username': $scope.username
+                    },
+                    file: file
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' +
+                                evt.config.file.name);
+                }).success(function (data, status, headers, config) {
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' +
+                                JSON.stringify(data.path));
+                    $scope.params.image = 'post_photos/' + data.path;
+                });
+            }
+        }
+    };
+
+	//
+
 	$scope.newPost = function () {
 		console.log($scope.params);
 		$http.post('/api/posts', $scope.params)
@@ -29,8 +61,8 @@ function NewPostCtrl($scope, $http) {
 				console.log('Headers: ' + headers);
 				console.log('Config: ' + config);
 				console.log('Success!');
-				$scope.params = {};
 				$scope.inProcess = true;
+				$scope.params = {};
 			})
 			.error(function(data, status, headers, config) {
 				$scope.inProcess = false;
@@ -57,4 +89,3 @@ function AcceptCtrl($scope, $http) {
 
 function AboutCtrl($scope, $http, $routeParams) {
 };
-

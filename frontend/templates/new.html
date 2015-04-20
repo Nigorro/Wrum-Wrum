@@ -1,13 +1,3 @@
-<!-- <form ng-submit="newPost()">
-  <input type="text" ng-model="params.title" placeholder="Заголовок" />
-  <input type="text" ng-model="params.description" placeholder="Текст" />
-  <input type="text" ng-model="params.image" placeholder="URL фотографии" />
-	<input type="text" ng-model="params.carNumber" placeholder="Номер машины" />
-	<input type="text" ng-model="params.author" placeholder="Автор" />
-  <input class="btn btn-primary" type="submit" id="submit" value="Submit" />
-</form> -->
-<!-- {{inProcess}}<br> -->
-
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
@@ -41,23 +31,36 @@
 			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 			  <strong>Успех!</strong> Ваша запись добавлена. Она появиться на главной странице после модерации
 			</div>
-			<form novalidate name="postForm" class="form-horizontal newPost"  ng-submit="newPost()">
-				<div class="form-group" >
-			    	<input type="text" ng-model="params.description" placeholder="Текст" />
-				</div>
-				<div class="form-group"  ng-class="{'has-warning': postForm.$invalid}">
-			    	<input type="text" ng-model="params.image" placeholder="URL фотографии" required/>
-				</div>
-				<div class="form-group">
-			    	<input type="text" ng-model="params.carNumber" placeholder="Номер машины" />
-				</div>
-				<div class="form-group">
-			    	<input type="text" ng-model="params.author" placeholder="Автор" />
-				</div>
-				<div class="form-group text-center"  ng-class="{'has-success':1, 'has-warning':1}">
-				  <button ng-disabled="postForm.$invalid" type="submit" class="btn btn-primary">Отправить</button>
-				</div>
-			</form>
-		</div>
+      <div class="new-post__container">
+        <div class="upload_file">
+          <div class="btn btn-primary" ng-file-select ng-model="files" ng-multiple="multiple">Загрузить фотографию</div>
+          <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+              drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+              accept="image/*,application/pdf">Перетащите фотографию сюда</div>
+          <div ng-no-file-drop>Функция Drag/Drop не поддерживаеся вашим браузером</div>
+          <img ng-show="params.image" class="image_preview" ng-src="{{params.image}}">
+          <!-- <ul>
+              <li ng-repeat="f in files" style="font:smaller">{{f.}}</li>
+          </ul> -->
+        </div>
+        <form novalidate name="postForm" class="form-horizontal newPost"  ng-submit="newPost()">
+          <div class="form-group" >
+              <input type="text" ng-model="params.description" placeholder="Текст" />
+          </div>
+          <!-- <div class="form-group"  ng-class="{'has-warning': postForm.$invalid}">
+              <input type="text" ng-model="params.image" hide placeholder="URL фотографии" required/>
+          </div> -->
+          <div class="form-group">
+              <input type="text" ng-model="params.car_number" placeholder="Номер машины" />
+          </div>
+          <div class="form-group">
+              <input type="text" ng-model="params.author" placeholder="Автор" />
+          </div>
+          <div class="form-group text-center"  ng-class="{'has-success':1, 'has-warning':1}">
+            <button ng-disabled="postForm.$invalid" type="submit" class="btn btn-primary">Отправить</button>
+          </div>
+        </form>
+      </div>
+    </div>
 	</div>
 </div>

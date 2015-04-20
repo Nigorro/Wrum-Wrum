@@ -32,11 +32,38 @@
 					<img src="{{post.image}}">
 				</div>
 				<div class="post__content">
-          <p style="text-align:center; font-size:18px; font-weight:700;">{{post.carNumber}}</p>
+          <p style="text-align:center; font-size:18px; font-weight:700;">{{post.car_number}}</p>
 					<p><a href="/#/post/{{post._id}}">{{post.description}}</a></p>
           <p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
 				</div>
 			</div>
 		</div>
 	</div>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+  (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+          try {
+              w.yaCounter29815729 = new Ya.Metrika({id:29815729,
+                      webvisor:true,
+                      clickmap:true,
+                      trackLinks:true,
+                      accurateTrackBounce:true});
+          } catch(e) { }
+      });
+
+      var n = d.getElementsByTagName("script")[0],
+          s = d.createElement("script"),
+          f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") {
+          d.addEventListener("DOMContentLoaded", f, false);
+      } else { f(); }
+  })(document, window, "yandex_metrika_callbacks");
+  </script>
+  <noscript><div><img src="//mc.yandex.ru/watch/29815729" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </div>
