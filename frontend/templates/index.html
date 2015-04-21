@@ -1,69 +1,73 @@
-<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/#/" class="navbar-brand">Wrum-Wrum</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/#/">Главная</a>
-        </li>
-        <li>
-          <a href="/#/newpost">Добавить</a>
-        </li>
-        <li>
-          <a href="/#/about">О проекте</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<header id="header">
+  <nav>
+      <div class="wrap group">
+          <ul id="navigation" class="group">
+              <li>
+                <a href="/#/" class="current_page_item">Главная</a>
+              </li>
+              <li>
+                <a href="/#/newpost">Добавить</a>
+              </li>
+              <li>
+                <a href="/#/about" >О проекте</a>
+              </li>
+          </ul>
+      </div><!-- .wrap < nav -->
+  </nav>
 </header>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12" ng-repeat="post in posts">
-			<div ng-show="post.isAccepted" class="post">
-				<div class="post__image">
-					<img src="{{post.image}}">
-				</div>
-				<div class="post__content">
-          <p style="text-align:center; font-size:18px; font-weight:700;">{{post.car_number}}</p>
-					<p><a href="/#/post/{{post._id}}">{{post.description}}</a></p>
-          <p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-  (function (d, w, c) {
-      (w[c] = w[c] || []).push(function() {
-          try {
-              w.yaCounter29815729 = new Ya.Metrika({id:29815729,
-                      webvisor:true,
-                      clickmap:true,
-                      trackLinks:true,
-                      accurateTrackBounce:true});
-          } catch(e) { }
-      });
+<body>
+  <div class="container">
+  	<div class="row">
+  		<div class="col-md-12" ng-repeat="post in posts">
+        <article  class="post-215 category-people category-photography category-pretty-girls entry box format-image">
+            <div class="entry-content-cnt">
+                <div class="entry-content">
+                    <a href="/#/post/{{post._id}}" class="thumb" data-lightbox="fancybox[215]" title=""><img src="{{post.image}}" class="attachment-ci_listing_thumb" alt="{{post.description}}" title="{{post.description}}"></a>
+                </div>
+            </div>
 
-      var n = d.getElementsByTagName("script")[0],
-          s = d.createElement("script"),
-          f = function () { n.parentNode.insertBefore(s, n); };
-      s.type = "text/javascript";
-      s.async = true;
-      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+            <div class="entry-desc">
+                <table class="entry-desc__table">
+                  <tr>
+                    <td><small>автор:</small> {{post.author}}</td>
+                    <td>{{post.car_number}}</td>
+                    <td>{{post.date | date:'dd/MM/yyyy в HH:mm'}}</td>
+                  </tr>
+                </table>
+                <h1><a href="/#/post/{{post._id}}">{{post.description}}</a></h1>
 
-      if (w.opera == "[object Opera]") {
-          d.addEventListener("DOMContentLoaded", f, false);
-      } else { f(); }
-  })(document, window, "yandex_metrika_callbacks");
-  </script>
-  <noscript><div><img src="//mc.yandex.ru/watch/29815729" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-</div>
+                <div class="entry-meta group">
+                    <!-- <a class="comments-no" href="#">4</a> <a data-post-id="215" class="heart-this loved" href="#" title="You love this."><span class="heart-no">7</span></a> <a class="entry-permalink" href="#" title="Permalink to High fashion model in autumn/winter clothes wearing sunglasses.">High fashion model in autumn/winter clothes wearing sunglasses.</a> -->
+                </div>
+            </div>
+        </article>
+  		</div>
+  	</div>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (d, w, c) {
+          (w[c] = w[c] || []).push(function() {
+              try {
+                  w.yaCounter29815729 = new Ya.Metrika({id:29815729,
+                          webvisor:true,
+                          clickmap:true,
+                          trackLinks:true,
+                          accurateTrackBounce:true});
+              } catch(e) { }
+          });
+
+          var n = d.getElementsByTagName("script")[0],
+              s = d.createElement("script"),
+              f = function () { n.parentNode.insertBefore(s, n); };
+          s.type = "text/javascript";
+          s.async = true;
+          s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+          if (w.opera == "[object Opera]") {
+              d.addEventListener("DOMContentLoaded", f, false);
+          } else { f(); }
+      })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/29815729" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </div>

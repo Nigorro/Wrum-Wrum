@@ -1,46 +1,69 @@
-<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/#/" class="navbar-brand">Wrum-Wrum</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/#/">Главная</a>
-        </li>
-        <li>
-          <a href="/#/newpost">Добавить</a>
-        </li>
-        <li>
-          <a href="/#/">О проекте</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<header id="header">
+  <nav>
+      <div class="wrap group">
+          <ul id="navigation" class="group">
+              <li>
+                <a href="/#/">Главная</a>
+              </li>
+              <li>
+                <a href="/#/newpost">Добавить</a>
+              </li>
+              <li>
+                <a href="/#/about">О проекте</a>
+              </li>
+          </ul>
+      </div><!-- .wrap < nav -->
+  </nav>
 </header>
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="post">
-				<div class="post__image">
-					<img src="{{post.image}}">
-				</div>
-				<div class="post__content">
-					<p style="text-align:center; font-size:18px; font-weight:700;">{{post.car_number}}</p>
-          <p>{{post.description}}</p>
-          <p class="post__content__date">{{post.date | date:'dd/MM/yyyy в HH:mm'}}</p>
-          <br>
-          <div>
-            <div vkcomments pageid="post._id"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <article  class="category-people category-photography category-pretty-girls entry box format-image">
+          <div class="entry-content-cnt">
+              <div class="entry-content post-img">
+                  <img src="{{post.image}}" class="attachment-ci_listing_thumb" alt="{{post.description}}" title="{{post.description}}">
+              </div>
           </div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+          <div class="entry-desc">
+              <table class="entry-desc__table">
+                <tr>
+                  <td><small>автор:</small> {{post.author}}</td>
+                  <td>{{post.car_number}}</td>
+                  <td>{{post.date | date:'dd/MM/yyyy в HH:mm'}}</td>
+                </tr>
+              </table>
+              <h3>{{post.description}}</h3>
+              <div vkcomments pageid="post._id"></div>
+          </div>
+      </article>
+    </div>
+  </div>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+  (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+          try {
+              w.yaCounter29815729 = new Ya.Metrika({id:29815729,
+                      webvisor:true,
+                      clickmap:true,
+                      trackLinks:true,
+                      accurateTrackBounce:true});
+          } catch(e) { }
+      });
+
+      var n = d.getElementsByTagName("script")[0],
+          s = d.createElement("script"),
+          f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") {
+          d.addEventListener("DOMContentLoaded", f, false);
+      } else { f(); }
+  })(document, window, "yandex_metrika_callbacks");
+  </script>
+  <noscript><div><img src="//mc.yandex.ru/watch/29815729" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </div>

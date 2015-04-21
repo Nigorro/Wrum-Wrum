@@ -17,12 +17,6 @@ app.directive('vkcomments', function($timeout) {
           }, 400);
         }
       });
-
-      // var pageId = scope.pageid;
-      // console.log('!!' + scope.pageid);
-      // if (pageId) {
-        
-      // };
     }
   };
 });

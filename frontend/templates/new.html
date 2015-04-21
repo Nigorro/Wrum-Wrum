@@ -1,66 +1,86 @@
-<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/#/" class="navbar-brand">Wrum-Wrum</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="/#/">Главная</a>
-        </li>
-        <li class="active">
-          <a href="/#/newpost">Добавить</a>
-        </li>
-        <li>
-          <a href="/#/">О проекте</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<header id="header">
+  <nav>
+      <div class="wrap group">
+          <ul id="navigation" class="group">
+              <li>
+                <a href="/#/">Главная</a>
+              </li>
+              <li>
+                <a href="/#/newpost" class="current_page_item">Добавить</a>
+              </li>
+              <li>
+                <a href="/#/about">О проекте</a>
+              </li>
+          </ul>
+      </div><!-- .wrap < nav -->
+  </nav>
 </header>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div  ng-show='inProcess'  class="alert alert-success alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-			  <strong>Успех!</strong> Ваша запись добавлена. Она появиться на главной странице после модерации
-			</div>
-      <div class="new-post__container">
-        <div class="upload_file">
-          <div class="btn btn-primary" ng-file-select ng-model="files" ng-multiple="multiple">Загрузить фотографию</div>
-          <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
-              drag-over-class="dragover" ng-multiple="true" allow-dir="true"
-              accept="image/*,application/pdf">Перетащите фотографию сюда</div>
-          <div ng-no-file-drop>Функция Drag/Drop не поддерживаеся вашим браузером</div>
-          <img ng-show="params.image" class="image_preview" ng-src="{{params.image}}">
-          <!-- <ul>
-              <li ng-repeat="f in files" style="font:smaller">{{f.}}</li>
-          </ul> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <article  class="category-people category-photography category-pretty-girls entry box format-image">
+            <div  ng-show='inProcess'  class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Успех!</strong> Ваша запись добавлена. Она появиться на главной странице после модерации
         </div>
-        <form novalidate name="postForm" class="form-horizontal newPost"  ng-submit="newPost()">
-          <div class="form-group" >
-              <input type="text" ng-model="params.description" placeholder="Текст" />
+        <div class="new-post__container">
+          <div class="upload_file">
+            <div class="btn btn-primary" ng-file-select ng-model="files" ng-multiple="multiple">Загрузить фотографию</div>
+            <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+                drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+                accept="image/*,application/pdf">Перетащите фотографию сюда</div>
+            <div ng-no-file-drop>Функция Drag/Drop не поддерживаеся вашим браузером</div>
+            <img ng-show="params.image" class="image_preview" ng-src="{{params.image}}">
+            <!-- <ul>
+                <li ng-repeat="f in files" style="font:smaller">{{f.}}</li>
+            </ul> -->
           </div>
-          <!-- <div class="form-group"  ng-class="{'has-warning': postForm.$invalid}">
-              <input type="text" ng-model="params.image" hide placeholder="URL фотографии" required/>
-          </div> -->
-          <div class="form-group">
-              <input type="text" ng-model="params.car_number" placeholder="Номер машины" />
-          </div>
-          <div class="form-group">
-              <input type="text" ng-model="params.author" placeholder="Автор" />
-          </div>
-          <div class="form-group text-center"  ng-class="{'has-success':1, 'has-warning':1}">
-            <button ng-disabled="postForm.$invalid" type="submit" class="btn btn-primary">Отправить</button>
-          </div>
-        </form>
+          <form novalidate name="postForm" class="form-horizontal newPost"  ng-submit="newPost()">
+            <div class="form-group" >
+                <input type="text" ng-model="params.description" placeholder="Текст" />
+            </div>
+            <!-- <div class="form-group"  ng-class="{'has-warning': postForm.$invalid}">
+                <input type="text" ng-model="params.image" hide placeholder="URL фотографии" required/>
+            </div> -->
+            <div class="form-group">
+                <input type="text" ng-model="params.car_number" placeholder="Номер машины" />
+            </div>
+            <div class="form-group">
+                <input type="text" ng-model="params.author" placeholder="Автор" />
+            </div>
+            <div class="form-group text-center"  ng-class="{'has-success':1, 'has-warning':1}">
+              <button ng-disabled="postForm.$invalid" type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+          </form>
+        </div>
+        </article>
       </div>
     </div>
-	</div>
-</div>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter29815729 = new Ya.Metrika({id:29815729,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/29815729" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </div>
