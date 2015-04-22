@@ -1,6 +1,6 @@
 var app = angular.module('wrum', ['ngRoute', 'ngResource', 'angularFileUpload'])
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
 			templateUrl: 'templates/index.html',
@@ -24,5 +24,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 		})
 		.otherwise({
 			redirectTo: '/',
-		})
+		});
+	$locationProvider.html5Mode(true);
 }]);
