@@ -4,23 +4,23 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 	$routeProvider
 		.when('/', {
 			templateUrl: 'templates/index.html',
-			controller: IndexCtrl,
+			controller: 'IndexCtrl',
 		})
 		.when('/post/:id', {
 			templateUrl: 'templates/post.html',
-			controller: PostsCtrl,
+			controller: 'PostsCtrl',
 		})
 		.when('/about', {
 			templateUrl: 'templates/about.html',
-			controller: AboutCtrl,
+			controller: 'AboutCtrl',
 		})
 		.when('/newpost/', {
 			templateUrl: 'templates/new.html',
-			controller: NewPostCtrl,
+			controller: 'NewPostCtrl',
 		})
 		.when('/accept/', {
 			templateUrl: 'templates/accept.html',
-			controller: AcceptCtrl,
+			controller: 'AcceptCtrl',
 		})
 		.otherwise({
 			redirectTo: '/',
