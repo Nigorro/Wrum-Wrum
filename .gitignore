@@ -1,0 +1,5 @@
+/node_modules/*
+/frontend/bower_components/*
+/post_photos/*
+/frontend/post_photos/*
+/server/post_photos/*
