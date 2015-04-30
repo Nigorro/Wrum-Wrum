@@ -130,6 +130,7 @@ router.post('/upload', function (req, res) {
         var saveName = random;
         this.newName = saveName + part.filename;
         uploadFile.path = './frontend/post_photos/'+ this.newName;
+        console.log(this);
 
         //проверяем размер файла, он не должен быть больше максимального размера
         if(uploadFile.size > maxSize) {
