@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var fs = require('fs');
 var multiparty = require('multiparty');
 var bodyParser = require('body-parser');
@@ -68,17 +69,6 @@ router.post('/posts', function (req, res) {
 	});
 });
 
-var form = "<!DOCTYPE HTML><html><body>" +
-"<form method='post' action='/api/upload' enctype='multipart/form-data'>" +
-"<input type='file' name='image'/>" +
-"<input type='submit' /></form>" +
-"</body></html>";
-
-router.get('/file', function (req, res){
-  res.writeHead(200, {'Content-Type': 'text/html' });
-  res.end(form);
-
-});
 router.post('/upload', function (req, res) {
     var form = new multiparty.Form();
     //здесь будет храниться путь с загружаемому файлу, его тип и размер
@@ -203,73 +193,5 @@ router.put('/posts/:id/accept', function (req, res){
         });
     });
 });
-
-///
-/// LOGIN
-///
-router.post('/login', function (req, res) {
-    var username = req.body.username || '';
-    var password = req.body.password || '';
-    console.log(username + '   ' + password);
-
-    if (username == '' || password == '') {
-        return res.send(401);
-    }
-    UserModel.findOne({username:username}, function (err, user) {
-        if (err) {
-            log.info(err);
-            return  res.send(401);
-        };
-
-        user.comparePassword(password, function (isMatch) {
-            if (!isMatch) {
-                log.info("Attempt failed to login with " + user.username);
-                return res.send(401);
-            }
-
-            var token = jwt.sign({username: user.username}, 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx', { expiresInMinutes: 60 });
- 
-            return res.json({token:token});
-        });
-    });
-});
-
-
-router.post('/singin', function (req, res) {
-    var user = new UserModel({
-        username: req.param('username'),
-        password: req.param('password')
-    });
-
-    user.save( function (err) {
-        if (!err) {
-            return res.send({ status: 'OK'});
-        } else {
-        if(err.name == 'ValidationError') {
-          res.statusCode = 400;
-          res.send({ error: 'Validation error' });
-          } else {
-              res.statusCode = 500;
-              res.send({ error: 'Server error' });
-          }
-          log.error('Internal error(%d): %s',res.statusCode,err.message); 
-        }
-    })
-});
-
-
-router.get('/users', function (req, res) {
-    return UserModel.find(function (err, users) {
-        if(!err) {
-            return res.send(users);
-        } else {
-            res.statusCode = 500;
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
-            return res.send({ error: 'Server error' });
-        }
-    })
-});
-
-
 
 module.exports = router;
