@@ -12,7 +12,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 		})
 		.when('/about', {
 			templateUrl: 'templates/about.html',
-			controller: '',
+			controller: 'AboutCtrl',
 		})
 		.when('/newpost/', {
 			templateUrl: 'templates/new.html',

@@ -44,7 +44,7 @@ router.get('/posts/:id', function(req, res, next) {
   });
 });
 
-router.post('/posts', function (req, res) {
+router.post('/posts', loadUser, function (req, res) {
 	var post = new PostModel({
 		author: req.param('author'),
 		description: req.param('description'),
@@ -194,4 +194,26 @@ router.put('/posts/:id/accept', function (req, res){
     });
 });
 
+
+function loadUser(req, res, next) {
+  if (req.session.userKey) {
+    client.get(req.session.userKey, function (error, userId) {
+        if (error !== null) console.log("error: " + error);
+        else {
+            UserModel.findById(userId, function(user) {
+                if (user) {
+                    console.log('currentUser is ' + userId);
+                    req.currentUser = user;
+                    next();
+                } else {
+                    return res.send(401);
+                }
+            });
+        }
+    });
+    
+  } else {
+    res.redirect('/sessions/new');
+  }
+}
 module.exports = router;

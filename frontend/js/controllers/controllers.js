@@ -95,8 +95,26 @@ app.controller('AcceptCtrl', ['$scope', '$http',
 	}
 ]);
 
-app.controller('AboutCtrl', ['$scope', 
-	function AboutCtrl($scope, $http, $routeParams) {
+app.controller('AboutCtrl', ['$scope', '$http', 
+	function AboutCtrl($scope, $http) {
+		$scope.login = {};
+		$scope.logIn = function () {
+			console.log('bingo!');
+			$http.post('/api/login', $scope.login)
+				.success(function (data, status, headers, config) {
+					$scope.inProcess = false;
+					console.log('Data: ' + data);
+					console.log('Status: ' + status);
+					console.log('Headers: ' + headers);
+					console.log('Config: ' + config);
+					console.log('Success!');
+					$scope.inProcess = true;
+					$scope.params = {};
+				})
+				.error(function(data, status, headers, config) {
+					$scope.inProcess = false;
+			  	});
+		};
 	}
 ]);
 

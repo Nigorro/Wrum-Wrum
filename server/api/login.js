@@ -40,20 +40,6 @@ router.get('/redis/set/:key/:value', function(req, response) {
 ///
 /// LOGIN
 ///
-router.get('/getcookie', function (req, res) {
-	if (req.cookies) {
-	    res.send(req.cookies);
-	  } else {
-	    res.send('<form method="post"><p>Check to <label>'
-	      + '<input type="checkbox" name="remember"/> remember me</label> '
-	      + '<input type="submit" value="Submit"/>.</p></form>');
-	  }
-});
-router.post('/setcookie', function (req, res) {
-	var minute = 60 * 1000;
-	if (req.param('key')) res.cookie('remember', 1, { maxAge: minute });
-	res.redirect('back');
-});
 router.post('/login', function (req, res) {
     var username = req.param('username') || '';
     var password = req.param('password') || '';
@@ -72,58 +58,21 @@ router.post('/login', function (req, res) {
                 log.info("Attempt failed to login with " + user.username);
                 return res.send(401);
             }
-            //find client cookie in redis storage
-   			//client.get(req.params.key, function (error, val) {
-			// 	if (error !== null) console.log("error: " + error);
-			// 	else {
-			// 		res.send("The value for this key is " + val);
-			// 	}
-			// });
-
             hash_key = crypto.createHash('md5').update('Apple').digest("hex");
-            res.cookie('redis', hash_key);
-            res.statusCode = 400;
-   //          client.set(hash_key, user, function (error, result) {
-			// 	if (error !== null) console.log("error: " + error);
-			// 	else {
-			// 		res.send("The value for '" + hash_key + "' is set to: " + user.username);
-			// 	}
-			// });
+            var death = 2628000000; 
+            res.cookie('userKey', hash_key, { maxAge: death });
+
+   			client.set(hash_key, user._id, function (error, result) {
+				if (error !== null) console.log("error: " + error);
+				else {
+					console.log("The value for '" + hash_key + "' is set to: " + user._id);
+					return res.send(user._id);
+				}
+			});
         });
     });
-    // UserModel.findOne({username:username}, function (err, user) {
-    //     if (err) {
-    //         log.info(err);
-    //         return  res.send(401);
-    //     };
 
-    //     user.comparePassword(password, function (isMatch) {
-    //         if (!isMatch) {
-    //             log.info("Attempt failed to login with " + user.username);
-    //             return res.send(401);
-    //         }
-
-    //         // var token = jwt.sign({username: user.username}, 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx', { expiresInMinutes: 60 });
- 
-    //         // return res.json({token:token});
-    //     });
-    // });
 });
-
-function loadUser(req, res, next) {
-  if (req.session.user_id) {
-    User.findById(req.session.user_id, function(user) {
-      if (user) {
-        req.currentUser = user;
-        next();
-      } else {
-        res.redirect('/sessions/new');
-      }
-    });
-  } else {
-    res.redirect('/sessions/new');
-  }
-}
 
 router.post('/singin', function (req, res) {
     var user = new UserModel({
